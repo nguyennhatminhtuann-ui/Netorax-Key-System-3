@@ -33,12 +33,18 @@ async function getKey(){
   try{
     const r=await fetch('/api/getkey');
     const d=await r.json();
-    if(d.success){status.textContent='Xác nhận thành công!';box.textContent=d.key;box.style.display='block';}
-    else status.textContent=d.message||'Không thể lấy Key.';
-  }catch(e){status.textContent='Không kết nối được API. Hãy xem README.'}
+    if(d.success){
+      status.textContent='Xác nhận thành công!';
+      box.textContent=d.key;
+      box.style.display='block';
+    } else {
+      status.textContent=d.message||'Không thể lấy Key.';
+    }
+  }catch(e){
+    status.textContent='Không kết nối được API. Hãy thử lại.';
+  }
   btn.disabled=false;
 }
-getKey();
 </script>
 </body>
 </html>
