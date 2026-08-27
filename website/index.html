@@ -17,11 +17,14 @@ button:hover{filter:brightness(1.1)}button:disabled{opacity:.6;cursor:not-allowe
 <body>
 <div class="card">
   <h1>Netorax Key System</h1>
-  <div class="sub">Demo Link4M → Get Key → Verify API</div>
-  <div id="status" class="status">Đang kiểm tra...</div>
+  <div class="sub">Get Key → Verify API</div>
+  <div id="status" class="status">Sẵn sàng</div>
+
   <button id="btn" onclick="getKey()">GET KEY</button>
+
   <div id="keyBox" class="key" style="display:none"></div>
-  <div class="small">Demo hiện dùng Key: 1. Bước Link4M chỉ là mô phỏng.</div>
+
+  <div class="small">Nhấn GET KEY để nhận key.</div>
 </div>
 <script>
 async function getKey(){
