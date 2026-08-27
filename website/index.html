@@ -6,64 +6,83 @@
 <title>Netorax Key System</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
+
+html,body{
+  width:100%;
+  min-height:100%;
+}
 
 body{
   margin:0;
   min-height:100vh;
-  display:grid;
-  place-items:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
   background:#080c18;
   color:#fff;
   font-family:Arial,sans-serif;
+  overflow-x:hidden;
 }
 
 .card{
-  width:min(440px,92vw);
-  padding:32px;
+  width:100%;
+  max-width:440px;
+  padding:30px;
   border-radius:20px;
   background:#12182a;
   border:1px solid #273454;
   box-shadow:0 25px 70px #0009;
   text-align:center;
+  overflow:hidden;
 }
 
 .logo{
-  width:64px;
-  height:64px;
-  margin:0 auto 16px;
-  display:grid;
-  place-items:center;
+  width:72px;
+  height:72px;
+  margin:0 auto 18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   border-radius:16px;
-  background:#4f7cff;
-  font-size:28px;
-  font-weight:bold;
+  overflow:hidden;
+  background:#1c2640;
 }
-  .logo img{
+
+.logo img{
   width:100%;
   height:100%;
-  object-fit:cover;
-  border-radius:16px;
+  display:block;
+  object-fit:contain;
 }
 
 h1{
   margin:0;
   font-size:27px;
+  line-height:1.2;
+  overflow-wrap:anywhere;
 }
 
 .sub{
-  margin-top:8px;
+  margin-top:9px;
   color:#9da9c3;
   font-size:14px;
+  line-height:1.5;
+  overflow-wrap:anywhere;
 }
 
 .status{
-  margin:24px 0 16px;
+  margin:22px 0 16px;
   padding:12px;
   border-radius:10px;
   background:#1c2640;
   color:#cdd8f3;
   font-size:14px;
+  line-height:1.4;
+  overflow-wrap:anywhere;
 }
 
 button{
@@ -72,7 +91,7 @@ button{
   border:0;
   border-radius:11px;
   background:#4f7cff;
-  color:white;
+  color:#fff;
   font-size:16px;
   font-weight:bold;
   cursor:pointer;
@@ -82,6 +101,10 @@ button{
 button:hover{
   filter:brightness(1.12);
   transform:translateY(-1px);
+}
+
+button:active{
+  transform:translateY(0);
 }
 
 button:disabled{
@@ -97,23 +120,27 @@ button:disabled{
   border-radius:12px;
   background:#0b1121;
   border:1px solid #33446f;
+  overflow:hidden;
 }
 
 .keyLabel{
   color:#8996b2;
   font-size:12px;
-  margin-bottom:8px;
+  margin-bottom:9px;
 }
 
 .key{
+  max-width:100%;
   font-size:26px;
   font-weight:bold;
   letter-spacing:3px;
-  word-break:break-all;
+  line-height:1.3;
+  overflow-wrap:anywhere;
+  word-break:break-word;
 }
 
 .copy{
-  margin-top:12px;
+  margin-top:13px;
   background:#252f49;
   font-size:14px;
 }
@@ -122,6 +149,22 @@ button:disabled{
   margin-top:20px;
   color:#71809d;
   font-size:12px;
+  line-height:1.4;
+  overflow-wrap:anywhere;
+}
+
+@media(max-width:400px){
+  .card{
+    padding:24px 18px;
+  }
+
+  h1{
+    font-size:24px;
+  }
+
+  .key{
+    font-size:22px;
+  }
 }
 </style>
 </head>
@@ -131,8 +174,8 @@ button:disabled{
 <div class="card">
 
   <div class="logo">
-  <img src="hinh anh.png" alt="Netorax Logo">
-</div>
+    <img src="hinh-anh.png" alt="Netorax Logo">
+  </div>
 
   <h1>Netorax Key System</h1>
 
@@ -169,7 +212,6 @@ button:disabled{
 </div>
 
 <script>
-
 let currentKey="";
 
 async function getKey(){
@@ -180,7 +222,6 @@ async function getKey(){
   const key=document.getElementById("key");
 
   btn.disabled=true;
-
   status.textContent="Đang lấy Key...";
   box.style.display="none";
 
@@ -191,10 +232,9 @@ async function getKey(){
 
     if(data.success){
 
-      currentKey=data.key;
+      currentKey=String(data.key);
 
       key.textContent=currentKey;
-
       box.style.display="block";
 
       status.textContent="Lấy Key thành công!";
@@ -214,7 +254,6 @@ async function getKey(){
   }
 
   btn.disabled=false;
-
 }
 
 async function copyKey(){
@@ -236,7 +275,6 @@ async function copyKey(){
   }
 
 }
-
 </script>
 
 </body>
